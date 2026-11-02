@@ -1,9 +1,6 @@
 package software.ulpgc.katas;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.nio.charset.StandardCharsets;
 
 public class Main {
@@ -12,8 +9,8 @@ public class Main {
         System.out.println(file.getAbsolutePath());
         System.out.println(file.length());
         System.out.println(file.canRead());
-        try (InputStream is = new FileInputStream(file)) {
-            System.out.println(new String(is.readAllBytes(), StandardCharsets.ISO_8859_1));
+        try (Reader r = new FileReader(file, StandardCharsets.ISO_8859_1)) {
+            System.out.println(r.readAllAsString());
         }
 
     }
