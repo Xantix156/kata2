@@ -1,21 +1,20 @@
 package software.ulpgc.katas;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 
 public class Main {
-    static void main() {
-        String s = "¡Qué día!";
-        byte[] utf = s.getBytes();
-        byte[] iso = s.getBytes(StandardCharsets.ISO_8859_1);
+    static void main() throws IOException {
+        File file = new File("doc.txt");
+        System.out.println(file.getAbsolutePath());
+        System.out.println(file.length());
+        System.out.println(file.canRead());
+        try (InputStream is = new FileInputStream(file)) {
+            System.out.println(new String(is.readAllBytes(), StandardCharsets.ISO_8859_1));
+        }
 
-        System.out.println("UTF-8 Coded & UTF-8 Decoded");
-        System.out.println(new String(utf));
-        System.out.println("UTF-8 Coded & ISO-8859-1 Decoded");
-        System.out.println(new String(utf, StandardCharsets.ISO_8859_1));
-        System.out.println("ISO-8859-1 Coded & UTF Decoded");
-        System.out.println(new String(iso));
-        System.out.println("ISO-8859-1 Coded & ISO-8859-1 Decoded");
-        System.out.println(new String(iso, StandardCharsets.ISO_8859_1));
     }
-
 }
