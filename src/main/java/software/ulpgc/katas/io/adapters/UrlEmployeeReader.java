@@ -21,13 +21,9 @@ public class UrlEmployeeReader implements EmployeeReader {
     }
 
     @Override
-    public List<Employee> load() {
-        try {
-            try (InputStream is = url.openStream()) {
-                return loadFrom(is);
-            }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+    public List<Employee> load() throws IOException {
+        try (InputStream is = url.openStream()) {
+            return loadFrom(is);
         }
     }
 
